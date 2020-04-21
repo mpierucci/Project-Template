@@ -3,6 +3,18 @@ plugins {
     `kotlin-dsl`
 }
 
+gradlePlugin {
+
+    plugins {
+        val masterPlugin = "master-plugin"
+
+        register(masterPlugin) {
+            id = masterPlugin
+            implementationClass = "MasterPlugin"
+        }
+    }
+}
+
 repositories {
     google()
     jcenter()
@@ -15,5 +27,6 @@ dependencies {
     implementation(kotlin("gradle-plugin", "1.3.72"))
 
     implementation("org.jacoco:org.jacoco.core:0.8.5")
+    implementation("com.pinterest:ktlint:0.36.0")
 }
 
