@@ -13,6 +13,7 @@ class MasterPlugin : Plugin<Project> {
     private val plugin = KotlinPlugin()
         .appendNext(next = JavaPlugin())
         .appendNext(next = AndroidPlugin())
+        .appendNext(next = TestPlugin())
         .appendNext(next = CoveragePlugin())
 
     override fun apply(project: Project) = plugin.apply(project)

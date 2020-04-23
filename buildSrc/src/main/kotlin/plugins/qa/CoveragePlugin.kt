@@ -25,8 +25,6 @@ internal class CoveragePlugin : CompositePlugin {
     override fun apply(target: Project) {
         target.extensions.create<CoverageExtension>(EXTENSION_COVERAGE)
         applyJacocoPlugin(target)
-
-        //  androidExtension.buildTypes { getByName(VERSION_DEBUG) { isTestCoverageEnabled = true } }
     }
 
     private fun applyJacocoPlugin(target: Project) = target.afterEvaluate {
@@ -43,6 +41,8 @@ internal class CoveragePlugin : CompositePlugin {
     private fun configureAndroidModulesCoverageTasks(target: Project, excludes: List<String>) {
 
         val androidExtension = target.extensions.findByType(BaseExtension::class.java) ?: return
+
+        androidExtension.buildTypes { getByName(VERSION_DEBUG) { isTestCoverageEnabled = true } }
 
         target.plugins.all {
             if (this is LibraryPlugin) configureLibraryPlugin(target, excludes)

@@ -4,6 +4,7 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
 import org.gradle.kotlin.dsl.get
 import plugins.CompositePlugin
+import plugins.reportPath
 
 
 /**

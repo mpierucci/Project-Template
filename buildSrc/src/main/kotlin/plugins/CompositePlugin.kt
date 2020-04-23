@@ -3,7 +3,7 @@ package plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-interface CompositePlugin : Plugin<Project> {
+internal interface CompositePlugin : Plugin<Project> {
 
     fun appendNext(next: CompositePlugin) = object : CompositePlugin {
         override fun apply(target: Project) {
