@@ -10,7 +10,6 @@ import org.gradle.kotlin.dsl.register
 import org.gradle.testing.jacoco.plugins.JacocoPlugin
 import org.gradle.testing.jacoco.tasks.JacocoReport
 import plugins.CompositePlugin
-import plugins.PluginExtensions.EXTENSION_COVERAGE
 
 
 /**
@@ -93,6 +92,8 @@ internal class CoveragePlugin : CompositePlugin {
     }
 
     companion object {
+
+        private const val EXTENSION_COVERAGE = "coverage"
 
         private const val VERSION_DEBUG = "debug"
 

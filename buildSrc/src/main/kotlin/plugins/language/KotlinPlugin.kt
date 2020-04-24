@@ -6,7 +6,6 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import plugins.CompositePlugin
-import plugins.PluginExtensions
 
 
 /**
@@ -20,49 +19,37 @@ class KotlinPlugin : CompositePlugin {
 
     override fun apply(target: Project) {
 
-        configureAndroidModule(target)
+        target.extensions.findByType(BaseExtension::class.java)?.let { androidExtension ->
 
-        target.plugins.apply(PLUGIN_KOTLIN_KAPT)
+            target.plugins.apply(PLUGIN_KOTLIN_ANDROID)
+            target.plugins.apply(PLUGIN_KOTLIN_KAPT)
+
+            androidExtension.sourceSets { SOURCE_SETS.forEach { named(it.key) { java.srcDir(it.value) } } }
+
+            return@apply
+        }
+
+        configureKotlinModule(target)
 
         target.dependencies { add(IMPLEMENTATION, Libs.stdlibJdk8) }
     }
 
-    private fun configureAndroidModule(target: Project) {
-
-        when (val androidExtension =
-            target.extensions.findByName(PluginExtensions.EXTENSION_ANDROID)) {
-            is BaseExtension -> {
-                target.plugins.apply(PLUGIN_KOTLIN_ANDROID)
-                androidExtension.sourceSets { SOURCE_SETS.forEach { named(it.key) { java.srcDir(it.value) } } }
-            }
-            else -> {
-                configureKotlinModule(target)
-            }
-        }
-    }
-
     private fun configureKotlinModule(target: Project) {
 
-        target.plugins.apply(PLUGIN_KOTLIN)
+        target.plugins.apply(PLUGIN_KOTLIN_JVM)
 
-        when (val kotlinExtension =
-            target.extensions.findByName(PluginExtensions.EXTENSION_KOTLIN)) {
-            is KotlinJvmProjectExtension -> {
-                kotlinExtension.sourceSets.getByName("main")
-                    .kotlin.srcDirs(
-                        SOURCE_SETS["main"],
-                        SOURCE_SETS["test"]
-                    )
+        target.extensions.findByType(KotlinJvmProjectExtension::class.java)
+            ?.let { kotlinExtension ->
+                kotlinExtension.sourceSets.getByName("main").kotlin.srcDirs(SOURCE_SETS["main"])
+                kotlinExtension.sourceSets.getByName("test").kotlin.srcDirs(SOURCE_SETS["test"])
             }
-            else -> {
-                //no-op
-            }
-        }
+
+        target.plugins.apply(PLUGIN_KOTLIN_KAPT)
     }
 
     companion object {
         private const val PLUGIN_KOTLIN_ANDROID = "kotlin-android"
-        private const val PLUGIN_KOTLIN = "org.jetbrains.kotlin.jvm"
+        private const val PLUGIN_KOTLIN_JVM = "org.jetbrains.kotlin.jvm"
         private const val PLUGIN_KOTLIN_KAPT = "kotlin-kapt"
 
         private const val IMPLEMENTATION = "implementation"

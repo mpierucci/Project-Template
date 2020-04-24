@@ -6,11 +6,11 @@ plugins {
 gradlePlugin {
 
     plugins {
-        val masterPlugin = "master-plugin"
+        val masterPlugin = "module-plugin"
 
         register(masterPlugin) {
             id = masterPlugin
-            implementationClass = "MasterPlugin"
+            implementationClass = "plugins.ModulePlugin"
         }
     }
 }
@@ -21,7 +21,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly(gradleApi())
 
     implementation("com.android.tools.build:gradle:3.6.3")
     implementation(kotlin("gradle-plugin", "1.3.72"))
