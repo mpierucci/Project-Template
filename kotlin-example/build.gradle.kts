@@ -1,20 +1,34 @@
-apply<plugins.MasterPlugin>()
+plugins {
+    `module-plugin`
+}
 
 //TODO move this to uni test
 project.afterEvaluate {
 
 
-    val kotlinSourceSets =
+    val kotlinMainSourceSets =
         extensions.getByType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension::class).sourceSets.getByName(
             "main"
         ).kotlin
 
-    check(kotlinSourceSets.srcDirs.size == 3) {
-        """Expecting 3 sourcets
+    check(kotlinMainSourceSets.srcDirs.size == 2) {
+        """Expecting 2 sourcets
             * Main java
-            * Test kotlin
             * Main kotlin
-            Found:${kotlinSourceSets.sourceDirectories.asPath}
+            Found:${kotlinMainSourceSets.sourceDirectories.asPath}
+        """.trimIndent()
+    }
+
+    val kotlinTestSourceSets =
+        extensions.getByType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension::class).sourceSets.getByName(
+            "test"
+        ).kotlin
+
+    check(kotlinTestSourceSets.srcDirs.size == 2) {
+        """Expecting 2 sourcets
+            * Test java
+            * Test kotlin
+            Found:${kotlinTestSourceSets.sourceDirectories.asPath}
         """.trimIndent()
     }
 

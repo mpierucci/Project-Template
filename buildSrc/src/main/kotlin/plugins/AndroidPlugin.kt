@@ -2,16 +2,14 @@ package plugins
 
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.Project
-import plugins.PluginExtensions.EXTENSION_ANDROID
 
 internal class AndroidPlugin : CompositePlugin {
 
     override fun apply(target: Project) {
-        val androidExtension = target.extensions.findByName(EXTENSION_ANDROID)
-        if (androidExtension !is BaseExtension) return
 
-        applyDefaultConfigurations(androidExtension)
-
+        target.extensions.findByType(BaseExtension::class.java)?.let {
+            applyDefaultConfigurations(it)
+        }
     }
 
     private fun applyDefaultConfigurations(androidExtension: BaseExtension) {
