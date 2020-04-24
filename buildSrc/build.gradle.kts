@@ -29,5 +29,7 @@ dependencies {
     implementation("com.pinterest:ktlint:0.36.0")
 
     testImplementation(gradleTestKit())
+    testImplementation("junit:junit:4.13")
+    testImplementation("com.google.truth:truth:1.0.1")
 }
 

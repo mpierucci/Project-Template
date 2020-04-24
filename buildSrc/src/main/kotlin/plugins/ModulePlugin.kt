@@ -12,8 +12,8 @@ class ModulePlugin : Plugin<Project> {
 
     private val plugin = KotlinPlugin()
         .appendNext(next = JavaCompatibilityPlugin())
-        .appendNext(next = AndroidPlugin())
         .appendNext(next = TestPlugin())
+        .appendNext(next = AndroidPlugin())
         .appendNext(next = CoveragePlugin())
 
     override fun apply(project: Project) = plugin.apply(project)

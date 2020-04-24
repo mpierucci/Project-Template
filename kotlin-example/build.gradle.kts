@@ -4,7 +4,7 @@ plugins {
 
 //TODO move this to uni test
 project.afterEvaluate {
-
+/*
 
     val kotlinMainSourceSets =
         extensions.getByType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension::class).sourceSets.getByName(
@@ -47,5 +47,7 @@ project.afterEvaluate {
     }
 
     tasks.getByName("jacocoTestReport")
+
+ */
 }
 
