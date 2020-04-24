@@ -50,8 +50,8 @@ class KotlinPlugin : CompositePlugin {
             is KotlinJvmProjectExtension -> {
                 kotlinExtension.sourceSets.getByName("main")
                     .kotlin.srcDirs(
-                        "src/main/kotlin",
-                        "src/test/kotlin"
+                        SOURCE_SETS["main"],
+                        SOURCE_SETS["test"]
                     )
             }
             else -> {
@@ -62,7 +62,7 @@ class KotlinPlugin : CompositePlugin {
 
     companion object {
         private const val PLUGIN_KOTLIN_ANDROID = "kotlin-android"
-        private const val PLUGIN_KOTLIN = "kotlin"
+        private const val PLUGIN_KOTLIN = "org.jetbrains.kotlin.jvm"
         private const val PLUGIN_KOTLIN_KAPT = "kotlin-kapt"
 
         private const val IMPLEMENTATION = "implementation"

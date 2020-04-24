@@ -28,5 +28,7 @@ dependencies {
 
     implementation("org.jacoco:org.jacoco.core:0.8.5")
     implementation("com.pinterest:ktlint:0.36.0")
+
+    testImplementation(gradleTestKit())
 }
 
