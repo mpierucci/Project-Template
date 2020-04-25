@@ -26,8 +26,9 @@ dependencies {
     implementation(kotlin("gradle-plugin", "1.3.72"))
 
     implementation("org.jacoco:org.jacoco.core:0.8.5")
-    implementation("com.pinterest:ktlint:0.36.0")
 
     testImplementation(gradleTestKit())
+    testImplementation("junit:junit:4.13")
+    testImplementation("com.google.truth:truth:1.0.1")
 }
 
