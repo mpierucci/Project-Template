@@ -4,6 +4,7 @@ import com.android.build.gradle.BaseExtension
 import dependencies.Libs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import plugins.CompositePlugin
 
@@ -31,6 +32,12 @@ class KotlinPlugin : CompositePlugin {
 
         configureKotlinModule(target)
 
+        target.tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+
         target.dependencies { add(IMPLEMENTATION, Libs.stdlibJdk8) }
     }
 
@@ -54,7 +61,6 @@ class KotlinPlugin : CompositePlugin {
 
         private const val IMPLEMENTATION = "implementation"
 
-        private const val EXTENSION_ANDROID = "android"
         private val SOURCE_SETS = mapOf(
             "main" to "src/main/kotlin/",
             "test" to "src/test/kotlin/",

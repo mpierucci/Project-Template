@@ -2,6 +2,7 @@ package plugins.qa
 
 import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.get
 import plugins.CompositePlugin
 import plugins.reportPath
@@ -26,7 +27,13 @@ internal class KtlintPlugin : CompositePlugin {
 
     override fun apply(target: Project) {
 
-        val reportPath = "${target.reportPath()}/ktlint"
+        val ktlinConfiguraton = target.configurations.create("ktlint")
+
+        target.dependencies {
+            ktlinConfiguraton("com.pinterest:ktlint:0.36.0")
+        }
+
+        val reportPath = "${target.reportPath()}/ktlint/ktlint-checkstyle-report.xml"
 
         val inputFiles = target.fileTree(
             mapOf(
@@ -35,12 +42,10 @@ internal class KtlintPlugin : CompositePlugin {
             )
         )
 
-        target.configurations.create("ktlint")
-
         target.tasks.register("ktlint", JavaExec::class.java) {
             dependsOn(project.tasks["check"])
             inputs.files(inputFiles)
-            outputs.files("${reportPath}/ktlint-checkstyle-report.xml")
+            outputs.files("${reportPath}")
 
             group = "verification"
             description = "Check Kotlin code style."
@@ -50,14 +55,14 @@ internal class KtlintPlugin : CompositePlugin {
                 "--reporter=checkstyle,output=${reportPath}",
                 SOURCE_FILES
             )
-            classpath = project.configurations.getByName("ktlint")
+            classpath = ktlinConfiguraton
         }
 
         target.tasks.register("ktlintFormat", JavaExec::class.java) {
             group = "formatting"
             description = "Fix Kotlin code style deviations."
-            classpath = project.configurations.getByName("ktlint")
-            main = "com.github.shyiko.ktlint.Main"
+            classpath = ktlinConfiguraton
+            main = "com.pinterest.ktlint.Main"
             args("--android", "-F", SOURCE_FILES)
         }
     }
