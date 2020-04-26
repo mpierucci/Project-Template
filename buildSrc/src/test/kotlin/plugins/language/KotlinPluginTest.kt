@@ -1,6 +1,7 @@
 package plugins.language
 
 import com.google.common.truth.Truth
+import org.gradle.api.JavaVersion
 import org.gradle.testfixtures.ProjectBuilder
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
@@ -14,7 +15,7 @@ class KotlinPluginTest {
         project.plugins.apply(KotlinPlugin::class.java)
 
         project.extensions.findByType(KotlinJvmOptions::class.java)?.let {
-            Truth.assertThat(it.jvmTarget).isEqualTo("1.8")
+            Truth.assertThat(it.jvmTarget).isEqualTo(JavaVersion.VERSION_1_8.toString())
         }
     }
 

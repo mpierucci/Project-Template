@@ -2,10 +2,12 @@ package plugins.language
 
 import com.android.build.gradle.BaseExtension
 import dependencies.Libs
+import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import plugins.CompositePlugin
 
 
@@ -27,18 +29,22 @@ class KotlinPlugin : CompositePlugin {
 
             androidExtension.sourceSets { SOURCE_SETS.forEach { named(it.key) { java.srcDir(it.value) } } }
 
+            settJvmTarget(target)
+
             return@apply
         }
 
         configureKotlinModule(target)
 
-        target.tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        target.dependencies { add(IMPLEMENTATION, Libs.stdlibJdk8) }
+    }
+
+    private fun settJvmTarget(target: Project) {
+        target.tasks.withType<KotlinCompile> {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
             }
         }
-
-        target.dependencies { add(IMPLEMENTATION, Libs.stdlibJdk8) }
     }
 
     private fun configureKotlinModule(target: Project) {
@@ -50,6 +56,8 @@ class KotlinPlugin : CompositePlugin {
                 kotlinExtension.sourceSets.getByName("main").kotlin.srcDirs(SOURCE_SETS["main"])
                 kotlinExtension.sourceSets.getByName("test").kotlin.srcDirs(SOURCE_SETS["test"])
             }
+
+        settJvmTarget(target)
 
         target.plugins.apply(PLUGIN_KOTLIN_KAPT)
     }
