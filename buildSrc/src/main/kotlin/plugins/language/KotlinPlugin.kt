@@ -31,6 +31,8 @@ class KotlinPlugin : CompositePlugin {
 
             settJvmTarget(target)
 
+            target.dependencies { add(IMPLEMENTATION, Libs.stdlibJdk8) }
+
             return@apply
         }
 
