@@ -10,7 +10,10 @@ object Test {
 
     const val lifeCycle = "androidx.arch.core:core-testing:2.1.0"
 
-    val truth = "com.google.truth:truth:1.0.1"
+    const val coroutne =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Libs.Coroutines.coroutineVersion}"
+
+    const val truth = "com.google.truth:truth:1.0.1"
 
     object Esspresso {
         const val core = "androidx.test.espresso:espresso-core:3.2.0"

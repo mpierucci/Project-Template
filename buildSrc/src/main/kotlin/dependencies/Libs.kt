@@ -4,9 +4,24 @@ object Libs {
 
     const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
 
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.2"
 
-    const val okHttp = "com.squareup.okhttp3:okhttp:$4.5.0"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.3"
+
+    const val okHttp = "com.squareup.okhttp3:okhttp:$4.7.2"
+
+    object Coroutines {
+        internal const val coroutineVersion = "1.3.7"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    }
+
+    object Glide {
+        private const val glideVersion = "4.11.0"
+        const val core = "com.github.bumptech.glide:glide:$glideVersion"
+        const val compiler = "com.github.bumptech.glide:compiler:$glideVersion"
+        const val recyclerView = "com.github.bumptech.glide:recyclerview-integration:$glideVersion"
+
+    }
 
     object AndroidX {
         const val appCompat = "androidx.appcompat:appcompat:1.1.0"
@@ -39,7 +54,7 @@ object Libs {
     }
 
     object Retrofit {
-        private const val retrofitVersion = "2.8.1"
+        private const val retrofitVersion = "2.9.0"
         const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
         const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
         const val rxAdapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
