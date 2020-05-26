@@ -30,6 +30,6 @@ internal class AndroidPlugin : CompositePlugin {
         private const val SDK_COMPILE_VERSION = 29
         private const val BUILD_TOOLS_VERSION = "29.0.3"
         private const val SDK_TARGET_VERSION = SDK_COMPILE_VERSION
-        private const val SDK_MIN_VERSION = 15
+        private const val SDK_MIN_VERSION = 21
     }
 }
