@@ -4,10 +4,13 @@ object Libs {
 
     const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
 
-
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.3"
-
     const val okHttp = "com.squareup.okhttp3:okhttp:$4.7.2"
+
+    object LeakCanary {
+        private const val version = "2.4"
+        const val leakCanary = "com.squareup.leakcanary:leakcanary-android:$version"
+        const val plumber = "com.squareup.leakcanary:plumber-android:$version"
+    }
 
     object Coroutines {
         internal const val coroutineVersion = "1.3.7"
@@ -24,12 +27,12 @@ object Libs {
     }
 
     object AndroidX {
-        const val appCompat = "androidx.appcompat:appcompat:1.1.0"
+        const val appCompat = "androidx.appcompat:appcompat:1.2.0-rc01"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 
         object Ktx {
-            const val core = "androidx.core:core-ktx:1.2.0"
-            const val fragment = "androidx.fragment:fragment-ktx:$1.2.4"
+            const val core = "androidx.core:core-ktx:1.3.0"
+            const val fragment = "androidx.fragment:fragment-ktx:$1.2.5"
             const val activity = "androidx.activity:activity-ktx:1.1.0"
         }
 
@@ -42,7 +45,7 @@ object Libs {
     }
 
     object Dagger {
-        private const val daggerVersion = "2.27"
+        private const val daggerVersion = "2.28.1"
         const val core = "com.google.dagger:dagger:$daggerVersion"
         const val compiler = "com.google.dagger:dagger-compiler:$daggerVersion"
     }
@@ -61,7 +64,7 @@ object Libs {
     }
 
     object Moshi {
-        private const val moshiVersion = "1.9.2"
+        private const val moshiVersion = "1.9.3"
         const val core = "com.squareup.moshi:moshi:$moshiVersion"
         const val codeGen = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
     }
