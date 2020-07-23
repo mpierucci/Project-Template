@@ -15,6 +15,13 @@ object Test {
 
     const val truth = "com.google.truth:truth:1.0.1"
 
+    const val androidNavigation =
+        "androidx.navigation:navigation-dynamic-features-fragment:${Libs.AndroidX.Navigation.version}"
+
+    const val room = "androidx.room:room-testing:${Libs.AndroidX.Room.version}"
+
+    const val workManager = "androidx.work:work-testing:${Libs.AndroidX.WorkManager.version}"
+
     object Esspresso {
         const val core = "androidx.test.espresso:espresso-core:3.2.0"
         const val jUnit = "androidx.test.ext:junit:1.0.0"

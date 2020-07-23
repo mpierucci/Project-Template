@@ -6,6 +6,8 @@ object Libs {
 
     const val okHttp = "com.squareup.okhttp3:okhttp:$4.7.2"
 
+    const val appStartUp = "androidx.startup:startup-runtime:1.0.0-alpha02"
+
     object LeakCanary {
         private const val version = "2.4"
         const val leakCanary = "com.squareup.leakcanary:leakcanary-android:$version"
@@ -41,6 +43,30 @@ object Libs {
             const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleVersion"
             const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
             const val test = "androidx.arch.core:core-testing:$lifeCycleVersion"
+        }
+
+        object Room {
+            internal const val version = "2.2.5"
+
+            const val core = "androidx.room:room-runtime:$version"
+            const val processor = "androidx.room:room-compiler:$version"
+            const val ktx = "androidx.room:room-ktx:$version"
+
+        }
+
+        object Navigation {
+            internal const val version = "2.3.0"
+
+            const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
+            const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+            const val dynamicFeature =
+                "androidx.navigation:navigation-dynamic-features-fragment:$version"
+        }
+
+        object WorkManager {
+            internal const val version = "2.4.0"
+
+            const val coreKtx = "androidx.work:work-runtime-ktx:$version"
         }
     }
 
