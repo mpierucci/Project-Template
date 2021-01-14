@@ -2,11 +2,11 @@ package dependencies
 
 object Libs {
 
-    const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
+    const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.21"
 
     const val okHttp = "com.squareup.okhttp3:okhttp:$4.7.2"
 
-    const val appStartUp = "androidx.startup:startup-runtime:1.0.0-alpha02"
+    const val appStartUp = "androidx.startup:startup-runtime:1.0.0"
 
     object LeakCanary {
         private const val version = "2.4"
@@ -15,7 +15,7 @@ object Libs {
     }
 
     object Coroutines {
-        internal const val coroutineVersion = "1.3.7"
+        internal const val coroutineVersion = "1.4.2"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
     }
@@ -29,11 +29,11 @@ object Libs {
     }
 
     object AndroidX {
-        const val appCompat = "androidx.appcompat:appcompat:1.2.0-rc01"
+        const val appCompat = "androidx.appcompat:appcompat:1.2.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 
         object Ktx {
-            const val core = "androidx.core:core-ktx:1.3.0"
+            const val core = "androidx.core:core-ktx:1.3.2"
             const val fragment = "androidx.fragment:fragment-ktx:$1.2.5"
             const val activity = "androidx.activity:activity-ktx:1.1.0"
         }
@@ -46,7 +46,7 @@ object Libs {
         }
 
         object Room {
-            internal const val version = "2.2.5"
+            internal const val version = "2.2.6"
 
             const val core = "androidx.room:room-runtime:$version"
             const val processor = "androidx.room:room-compiler:$version"
@@ -55,7 +55,7 @@ object Libs {
         }
 
         object Navigation {
-            internal const val version = "2.3.0"
+            internal const val version = "2.3.2"
 
             const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
             const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
@@ -71,7 +71,7 @@ object Libs {
     }
 
     object Dagger {
-        private const val daggerVersion = "2.28.1"
+        private const val daggerVersion = "2.30.1"
         const val core = "com.google.dagger:dagger:$daggerVersion"
         const val compiler = "com.google.dagger:dagger-compiler:$daggerVersion"
     }
