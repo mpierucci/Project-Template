@@ -22,8 +22,8 @@ repositories {
 
 dependencies {
 
-    implementation("com.android.tools.build:gradle:4.0.1")
-    implementation(kotlin("gradle-plugin", "1.3.72"))
+    implementation("com.android.tools.build:gradle:4.1.1")
+    implementation(kotlin("gradle-plugin", "1.4.21"))
 
     implementation("org.jacoco:org.jacoco.core:0.8.5")
 
